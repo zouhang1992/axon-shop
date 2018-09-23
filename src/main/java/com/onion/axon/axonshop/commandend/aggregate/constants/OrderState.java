@@ -4,7 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum OrderState {
-    PROCESSING("PROCESSING", 2),;
+
+    PROCESSING("PROCESSING", 1),
+    CONFIRMED("CONFIRMED",2),
+    CANCELLED("CANCELLED",3),
+    ;
 
     private final String state;
     private final int stateNum;

@@ -1,16 +1,34 @@
-package com.onion.axon.axonshop.persistence.entities;
-
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-@Entity(name = "orders")
-@Table(name ="order")
-public class OrderView {
-
-    @Id
-    @NotNull String id;
-
-}
+//package com.onion.axon.axonshop.persistence.entities;
+//
+//
+//import lombok.Builder;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//import org.hibernate.annotations.GenericGenerator;
+//
+//import javax.persistence.*;
+//import javax.validation.constraints.NotNull;
+//import java.util.Map;
+//
+//@Data
+//@Builder
+//@Entity(name = "orders")
+//@Table(name ="order")
+//@NoArgsConstructor
+//public class OrderView {
+//
+//    @Id
+//    @GenericGenerator(name = "idGenerator",strategy = "String")
+//    @GeneratedValue(generator = "idGenerator")
+//    @NotNull String id;
+//
+//    private String username;
+//
+//    private String state;
+//
+//    @OneToMany
+//    private Map<String,ProductView> products;
+//
+//
+//
+//}

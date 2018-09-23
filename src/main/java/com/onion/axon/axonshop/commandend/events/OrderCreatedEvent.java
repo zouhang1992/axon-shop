@@ -1,5 +1,4 @@
-package com.onion.axon.axonshop.commandend.commands;
-
+package com.onion.axon.axonshop.commandend.events;
 
 import com.onion.axon.axonshop.commandend.aggregate.Product;
 import lombok.AllArgsConstructor;
@@ -10,18 +9,9 @@ import java.util.Map;
 
 @Value
 @AllArgsConstructor
-public class CreateOrderCommand {
-
+public class OrderCreatedEvent {
     @TargetAggregateIdentifier
     private String orderId;
-
     private String username;
-
     private Map<String,Product> products;
-
-
-
-
-
-
 }
