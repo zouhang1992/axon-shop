@@ -28,8 +28,6 @@ public class OrderHandler {
     @Autowired
     private Repository<Product> productRepository;
 
-    @Autowired
-    EventBus eventBus;
 
     @CommandHandler
     public void handle(CreateOrderCommand command) throws Exception {
