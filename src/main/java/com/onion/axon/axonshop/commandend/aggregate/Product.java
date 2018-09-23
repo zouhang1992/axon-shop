@@ -7,6 +7,8 @@ import com.onion.axon.axonshop.commandend.events.ProductCreatedEvent;
 import com.onion.axon.axonshop.commandend.events.ProductNotEnougShEvent;
 import com.onion.axon.axonshop.commandend.events.ProductReservedEvent;
 import com.onion.axon.axonshop.commandend.events.ReserveCancelledEvent;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
@@ -14,15 +16,23 @@ import org.axonframework.common.IdentifierFactory;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.slf4j.Logger;
+import org.springframework.core.annotation.Order;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Data
+@Builder
 @Aggregate
+@AllArgsConstructor
 public class Product {
 
     private static final Logger LOGGER = getLogger(Product.class);
+    //    @Id
     @AggregateIdentifier
     private String productId;
 
@@ -77,4 +87,20 @@ public class Product {
     }
 
 
+    public String getProductId() {
+        return productId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNums() {
+        return nums;
+    }
+
+    public long getPrice() {
+        return price;
+    }
 }
+
