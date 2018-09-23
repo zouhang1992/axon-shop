@@ -1,36 +1,31 @@
 package com.onion.axon.axonshop.commandend.aggregate;
 
 import com.onion.axon.axonshop.commandend.aggregate.constants.OrderState;
+import com.onion.axon.axonshop.commandend.aggregate.idenditifers.OrderId;
 import com.onion.axon.axonshop.commandend.commands.ConfirmOrderCommand;
 import com.onion.axon.axonshop.commandend.commands.CreateOrderCommand;
 import com.onion.axon.axonshop.commandend.events.OrderCancelledEvent;
 import com.onion.axon.axonshop.commandend.events.OrderConfirmedEvent;
 import com.onion.axon.axonshop.commandend.events.OrderCreatedEvent;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.commandhandling.model.AggregateMember;
-import org.axonframework.common.IdentifierFactory;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Map;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.markDeleted;
 
 @Data
-@Entity
 @Aggregate
-@Table(name = "order")
+@NoArgsConstructor
 public class Order {
 
-    @Id
-//    @AggregateIdentifier
-    private  String orderId;
+    @AggregateIdentifier
+    private OrderId orderId;
 
     private String username;
 
@@ -39,15 +34,10 @@ public class Order {
     private String state;
 
 
-//    @OneToMany
-    @Transient
     @AggregateMember
     private Map<String,Product> products;
 
 
-    public Order() {
-        this.orderId = IdentifierFactory.getInstance().generateIdentifier();
-    }
 
     //    @CommandHandler
     public Order(CreateOrderCommand command) {

@@ -1,3 +1,6 @@
 这个比较axon-bank是稍微复杂一点的例子
 主要将handler从aggregate中 分离出来了 
 在项目结构目录上有所不同
+
+v1准备采用mysql关系型数据库
+v2是采用axonframework默认的mdbongo

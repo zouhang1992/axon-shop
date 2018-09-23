@@ -1,6 +1,7 @@
 package com.onion.axon.axonshop.commandend.commands;
 
 
+import com.onion.axon.axonshop.commandend.aggregate.idenditifers.OrderId;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
@@ -10,7 +11,7 @@ import org.axonframework.commandhandling.TargetAggregateIdentifier;
 public class RollbackOrderCommand {
 
     @TargetAggregateIdentifier
-    private String orderId;
+    private OrderId orderId;
 
 
 
