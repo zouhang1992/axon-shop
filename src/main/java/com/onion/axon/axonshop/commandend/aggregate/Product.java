@@ -42,6 +42,8 @@ public class Product {
 
     private long price;
 
+    private boolean reserved;
+
     public Product() {
         this.productId = IdentifierFactory.getInstance().generateIdentifier();
     }

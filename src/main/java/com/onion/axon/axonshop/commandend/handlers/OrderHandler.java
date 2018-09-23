@@ -32,14 +32,14 @@ public class OrderHandler {
     @CommandHandler
     public void handle(CreateOrderCommand command) throws Exception {
         HashMap<String, Product> products = new HashMap<>();
-        command.getProducts().forEach((productId, product) -> {
+        command.getProducts().forEach((productId, numbers) -> {
             LOGGER.debug("根据产品id获取产品: {}", productId);
             Aggregate<Product> aggregate = productRepository.load(productId);//主要去获取商品的价格 与名字
             products.put(productId, Product.builder()
                     .productId(productId)
                     .name(aggregate.invoke(a -> a.getName()))
                     .price(aggregate.invoke(a -> a.getPrice()))
-                    .nums(product.getNums())
+                    .nums(numbers)
                     .build());
             try {
                 repository.newInstance(() -> new Order(command.getOrderId(), command.getUsername(), products));

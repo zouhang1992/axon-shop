@@ -4,14 +4,12 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.common.Assert;
 import org.axonframework.common.IdentifierFactory;
 
-import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class OrderId  implements Serializable {
 
-    @Id
     @AggregateIdentifier
     private final String identifier;
 

@@ -18,9 +18,11 @@ public class CreateOrderCommand {
 
     private String username;
 
-    private Map<String,Product> products;
+    private Map<String,Integer> products;
 
-
-
-
+    public CreateOrderCommand(String username, Map<String, Integer> products) {
+        this.orderId = new OrderId();
+        this.username = username;
+        this.products = products;
+    }
 }
