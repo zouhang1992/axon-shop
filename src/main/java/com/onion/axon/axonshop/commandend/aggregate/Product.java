@@ -9,26 +9,21 @@ import com.onion.axon.axonshop.commandend.events.ProductReservedEvent;
 import com.onion.axon.axonshop.commandend.events.ReserveCancelledEvent;
 import lombok.Data;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.common.IdentifierFactory;
 import org.axonframework.eventsourcing.EventSourcingHandler;
+import org.axonframework.spring.stereotype.Aggregate;
 import org.slf4j.Logger;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Data
-//@Aggregate
-@Entity
-@Table(name = "product")
+@Aggregate
 public class Product {
 
     private static final Logger LOGGER = getLogger(Product.class);
-    @Id
-//    @AggregateIdentifier
+    @AggregateIdentifier
     private String productId;
 
     private String name;
