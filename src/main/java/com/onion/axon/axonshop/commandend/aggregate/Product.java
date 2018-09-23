@@ -1,5 +1,6 @@
 package com.onion.axon.axonshop.commandend.aggregate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.onion.axon.axonshop.commandend.commands.CreateProductCommand;
 import com.onion.axon.axonshop.commandend.commands.ReserveProductCommand;
 import com.onion.axon.axonshop.commandend.commands.RollbackReservationCommand;
@@ -22,6 +23,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -29,7 +32,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Builder
 @Aggregate
 @AllArgsConstructor
-public class Product {
+public class Product implements Serializable {
 
     private static final Logger LOGGER = getLogger(Product.class);
     //    @Id
@@ -45,7 +48,7 @@ public class Product {
     private boolean reserved;
 
     public Product() {
-        this.productId = IdentifierFactory.getInstance().generateIdentifier();
+//        this.productId = IdentifierFactory.getInstance().generateIdentifier();
     }
 
     @CommandHandler

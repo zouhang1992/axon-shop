@@ -16,6 +16,7 @@ import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Map;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
@@ -23,7 +24,7 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.markDel
 
 @Data
 @Aggregate
-public class Order {
+public class Order implements Serializable {
 
 //    @Id
     @AggregateIdentifier

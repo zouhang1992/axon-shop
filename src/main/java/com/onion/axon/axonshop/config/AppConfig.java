@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(
-        {OrderConfig.class, ProductConfig.class}
+        {AxonConfig.class}
 )
 public class AppConfig {
 }
