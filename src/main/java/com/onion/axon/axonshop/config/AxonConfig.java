@@ -27,6 +27,7 @@ import java.sql.SQLException;
 @Import({
         OrderConfig.class,
         ProductConfig.class,
+        SagaConfig.class
 //        MyEntityManagerProvider.class,
 //        MyJpaEventStoreEngine.class
 })
