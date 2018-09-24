@@ -18,6 +18,12 @@ import java.util.Map;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.markDeleted;
 
+/**
+ * 案 在使用axonframework时
+ * 有些表隐藏起来了 比如关联表  需要自己想法创建
+ * 有些表 因为字段的限制 即所有主键的字节大小不超过10000 会导致创建失败
+ * 我用的是mysql
+ */
 @Data
 @Aggregate
 public class Order implements Serializable {
@@ -40,6 +46,18 @@ public class Order implements Serializable {
      *   PRIMARY KEY (`order_entity_order_id`,`products_key`),
      */
     //三个字段 order product的主键  以及 string的值
+    //简便方法就是写一个空的（不含字段只含有主键）实体 然后给他取名为t_order_products
+    //然后就有创建相应表的sql 然后只需要改一下sql 自己创建即可 自动生成的sql 如下
+    /**
+     *  create table t_order_products (
+     *        id varchar(255) not null,
+     *         order_entity_order_id varchar(255) not null,
+     *         products_product_id varchar(255) not null,
+     *         products_key varchar(255) not null,
+     *         primary key (order_entity_order_id, products_key)
+     *     ) engine=MyISAM
+      */
+    //将id删除
     @AggregateMember
     private Map<String,Product> products;
 
