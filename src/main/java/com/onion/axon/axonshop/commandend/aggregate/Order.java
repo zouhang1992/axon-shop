@@ -3,19 +3,15 @@ package com.onion.axon.axonshop.commandend.aggregate;
 import com.onion.axon.axonshop.commandend.aggregate.constants.OrderState;
 import com.onion.axon.axonshop.commandend.aggregate.idenditifers.OrderId;
 import com.onion.axon.axonshop.commandend.commands.ConfirmOrderCommand;
-import com.onion.axon.axonshop.commandend.commands.CreateOrderCommand;
 import com.onion.axon.axonshop.commandend.events.OrderCancelledEvent;
 import com.onion.axon.axonshop.commandend.events.OrderConfirmedEvent;
 import com.onion.axon.axonshop.commandend.events.OrderCreatedEvent;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.commandhandling.model.AggregateMember;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -26,7 +22,6 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.markDel
 @Aggregate
 public class Order implements Serializable {
 
-//    @Id
     @AggregateIdentifier
     private OrderId orderId;
 
@@ -37,10 +32,8 @@ public class Order implements Serializable {
     private String state;
 
 
-    @Transient
     @AggregateMember
     private Map<String,Product> products;
-
 
     public Order() {
     }

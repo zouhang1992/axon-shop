@@ -1,11 +1,8 @@
 package com.onion.axon.axonshop.config;
 
-import jdk.nashorn.internal.parser.Token;
 import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.common.jpa.SimpleEntityManagerProvider;
 import org.axonframework.common.transaction.NoTransactionManager;
-import org.axonframework.common.transaction.TransactionManager;
-import org.axonframework.eventhandling.saga.repository.jpa.JpaSagaStore;
 import org.axonframework.eventhandling.tokenstore.TokenStore;
 import org.axonframework.eventhandling.tokenstore.jpa.JpaTokenStore;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
@@ -16,7 +13,6 @@ import org.axonframework.serialization.upcasting.event.NoOpEventUpcaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,13 +20,13 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-@Import({
-        OrderConfig.class,
-        ProductConfig.class,
-        SagaConfig.class
+//@Import({
+//        OrderConfig.class,
+//        ProductConfig.class,
+//        SagaConfig.class
 //        MyEntityManagerProvider.class,
 //        MyJpaEventStoreEngine.class
-})
+//})
 public class AxonConfig {
     @Bean
     public Serializer serializer() {
