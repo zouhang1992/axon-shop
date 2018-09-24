@@ -32,6 +32,14 @@ public class Order implements Serializable {
     private String state;
 
 
+    //这需要一个中间表 t_order_products 不会自己生成
+    /**
+     * `order_entity_order_id` varchar(100) NOT NULL,
+     *   `products_key` varchar(100) NOT NULL,
+     *   `products_product_id` varchar(255) NOT NULL,
+     *   PRIMARY KEY (`order_entity_order_id`,`products_key`),
+     */
+    //三个字段 order product的主键  以及 string的值
     @AggregateMember
     private Map<String,Product> products;
 
