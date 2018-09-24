@@ -33,7 +33,7 @@ public class OrderConfig {
 
     //都用到事件溯源机制  我还用得着去持久化对象本身吗？？
     // 没必要啊 直接根据事件去获取（一个事件上的）对象不就okay
-    @Bean
+    @Bean(name = "orderRepository")
     public Repository<Order> orderRepository(){
         EventSourcingRepository<Order> orderEventSourcingRepository = new EventSourcingRepository<>(
                 orderAggregateAggregateFactory(), eventStore

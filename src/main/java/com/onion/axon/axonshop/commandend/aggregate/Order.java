@@ -75,6 +75,9 @@ public class Order implements Serializable {
 
     //订单创建事件
     @EventSourcingHandler
+    //@EventSourcingHandler收集事件处理字段的逻辑（修改值）
+    // 在 @EventHandler 就行对象的转化（根对象（Aggregate）与 entity 不同 ） 再进行持久化
+    //aggregate 与 entity的不同 可以参考 ddd
     public void on(OrderCreatedEvent event){
         this.orderId = event.getOrderId();
         this.username = event.getUsername();

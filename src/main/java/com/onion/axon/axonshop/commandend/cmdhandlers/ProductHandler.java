@@ -1,14 +1,12 @@
-package com.onion.axon.axonshop.commandend.handlers;
+package com.onion.axon.axonshop.commandend.cmdhandlers;
 
 
-import com.onion.axon.axonshop.commandend.aggregate.Order;
 import com.onion.axon.axonshop.commandend.aggregate.Product;
 import com.onion.axon.axonshop.commandend.commands.ReserveProductCommand;
 import com.onion.axon.axonshop.commandend.commands.RollbackReservationCommand;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.Repository;
-import org.axonframework.eventhandling.EventBus;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

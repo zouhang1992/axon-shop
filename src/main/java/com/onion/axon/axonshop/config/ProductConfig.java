@@ -3,7 +3,6 @@ package com.onion.axon.axonshop.config;
 import com.onion.axon.axonshop.commandend.aggregate.Product;
 import org.axonframework.eventsourcing.AggregateFactory;
 import org.axonframework.eventsourcing.EventSourcingRepository;
-import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.spring.eventsourcing.SpringPrototypeAggregateFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class ProductConfig {
 
-    @Autowired
-    private EventStorageEngine eventStorageEngine;
 
     @Autowired
     private EventStore eventStore;

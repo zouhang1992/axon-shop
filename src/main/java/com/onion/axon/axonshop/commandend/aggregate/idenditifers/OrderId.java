@@ -48,8 +48,6 @@ public class OrderId  implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderId{" +
-                "identifier='" + identifier + '\'' +
-                '}';
+        return identifier ;
     }
 }

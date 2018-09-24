@@ -1,4 +1,4 @@
-package com.onion.axon.axonshop.commandend.handlers;
+package com.onion.axon.axonshop.commandend.cmdhandlers;
 
 import com.onion.axon.axonshop.commandend.aggregate.Order;
 import com.onion.axon.axonshop.commandend.aggregate.Product;
@@ -8,7 +8,6 @@ import com.onion.axon.axonshop.commandend.commands.RollbackOrderCommand;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.Repository;
-import org.axonframework.eventhandling.EventBus;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +22,7 @@ public class OrderHandler {
     private static final Logger LOGGER = getLogger(OrderHandler.class);
 
     @Autowired
-    private Repository<Order> repository;
+    private Repository<Order> orderRepository;
 
     @Autowired
     private Repository<Product> productRepository;
@@ -42,7 +41,7 @@ public class OrderHandler {
                     .nums(numbers)
                     .build());
             try {
-                repository.newInstance(() -> new Order(command.getOrderId(), command.getUsername(), products));
+                orderRepository.newInstance(() -> new Order(command.getOrderId(), command.getUsername(), products));
             } catch (Exception e) {
                 LOGGER.debug("创建订单失败 {}", command);
                 e.printStackTrace();
@@ -52,13 +51,13 @@ public class OrderHandler {
 
     @CommandHandler
     public void handle(RollbackOrderCommand command) {
-        Aggregate<Order> orderAggregate = repository.load(command.getOrderId().getIdentifier());
+        Aggregate<Order> orderAggregate = orderRepository.load(command.getOrderId().getIdentifier());
         orderAggregate.execute(a->a.cancle());
     }
 
     @CommandHandler
     public void handle(ConfirmOrderCommand command){
-        Aggregate<Order> aggregate = repository.load(command.getOrderId().getIdentifier());
+        Aggregate<Order> aggregate = orderRepository.load(command.getOrderId().getIdentifier());
         aggregate.execute(a->a.confirm());
     }
 
